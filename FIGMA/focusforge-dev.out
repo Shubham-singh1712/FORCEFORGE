@@ -1,0 +1,35 @@
+
+> focusforge-ai@1.0.0 dev
+> next dev --port 4029
+
+   ▲ Next.js 15.5.7
+   - Local:        http://localhost:4029
+   - Network:      http://192.168.29.3:4029
+
+ ✓ Starting...
+ ✓ Ready in 3.2s
+ ○ Compiling /app ...
+ ✓ Compiled /app in 12.7s (2593 modules)
+ GET /app 200 in 14673ms
+ ✓ Compiled in 1521ms (2593 modules)
+ GET /app 200 in 220ms
+ GET /app 200 in 589ms
+ GET /app 200 in 214ms
+ GET /app 200 in 240ms
+ ✓ Compiled in 1554ms (2593 modules)
+ GET /app 200 in 279ms
+ GET /app 200 in 278ms
+ GET /app 200 in 516ms
+ ✓ Compiled in 1491ms (2593 modules)
+ GET /app 200 in 254ms
+ GET /app 200 in 250ms
+ GET /app 200 in 522ms
+ ○ Compiling /app/ai-coach ...
+ ✓ Compiled /app/ai-coach in 825ms (2594 modules)
+ GET /app/ai-coach 200 in 1011ms
+ ○ Compiling /app/focus ...
+ ✓ Compiled /app/focus in 1852ms (2617 modules)
+ GET /app/focus 200 in 2016ms
+ ○ Compiling /app/rewards ...
+ ✓ Compiled /app/rewards in 945ms (2634 modules)
+ GET /app/rewards 200 in 1127ms
