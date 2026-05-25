@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { Sparkles, TrendingUp, Clock, Calendar, ArrowRight } from "lucide-react";
+import { Sparkles, TrendingUp, Clock, Calendar, ArrowRight, Download } from "lucide-react";
 import { toast } from "sonner";
 
 type InsightCard = {
@@ -130,6 +130,33 @@ export function AICoachScreen() {
     toast.success("Opening app blocking settings");
   };
 
+  const downloadAiLogsPdf = async () => {
+    try {
+      const response = await fetch("/api/ai-coach/logs-pdf", {
+        method: "GET",
+        cache: "no-store",
+      });
+
+      if (!response.ok) {
+        const data = (await response.json().catch(() => ({ error: "Failed to download AI logs PDF" }))) as {
+          error?: string;
+        };
+        throw new Error(data.error ?? "Failed to download AI logs PDF");
+      }
+
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "focusforge-ai-logs.pdf";
+      link.click();
+      URL.revokeObjectURL(url);
+      toast.success("AI logs PDF downloaded");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Could not download AI logs PDF");
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div className="md:hidden">
@@ -145,7 +172,16 @@ export function AICoachScreen() {
       </div>
 
       <div>
-        <h2 className="mb-4 text-sm uppercase tracking-wide text-gray-400">Smart Insights</h2>
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <h2 className="text-sm uppercase tracking-wide text-gray-400">Smart Insights</h2>
+          <button
+            onClick={downloadAiLogsPdf}
+            className="inline-flex h-10 items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 text-sm font-medium text-white transition-colors hover:bg-white/10"
+          >
+            <Download className="h-4 w-4" />
+            Export AI Logs PDF
+          </button>
+        </div>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {coachData.insights.map((insight, index) => {
             const Icon = getInsightIcon(insight.icon);

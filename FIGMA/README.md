@@ -178,5 +178,6 @@ Render injects its own `PORT` value automatically, so the production start scrip
 - `/api/profile`
 - `/api/rewards`
 - `/api/ai-coach`
+- `/api/ai-coach/logs-pdf`
 - `/api/weekly-report`
 - `/api/activity`
